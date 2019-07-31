@@ -13,6 +13,7 @@
 		2137093C22F16D54005D6BDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2137093B22F16D54005D6BDA /* Assets.xcassets */; };
 		2137093F22F16D54005D6BDA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2137093E22F16D54005D6BDA /* Preview Assets.xcassets */; };
 		2137094222F16D54005D6BDA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2137094022F16D54005D6BDA /* LaunchScreen.storyboard */; };
+		2179C2FA22F1A5C8009A3931 /* DetailTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179C2F922F1A5C8009A3931 /* DetailTextView.swift */; };
 		21D6034022F17C6000779860 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D6033F22F17C6000779860 /* ProfileView.swift */; };
 		21D6034222F184E900779860 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D6034122F184E900779860 /* CardView.swift */; };
 		21D6034422F185FB00779860 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D6034322F185FB00779860 /* Source.swift */; };
@@ -27,6 +28,7 @@
 		2137093E22F16D54005D6BDA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2137094122F16D54005D6BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2137094322F16D54005D6BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2179C2F922F1A5C8009A3931 /* DetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailTextView.swift; path = "../../../../../../../System/Volumes/Data/Users/yanyibo/Documents/GitHub/CardView-SwiftUI/CardView-SwiftUI/CardView-SwiftUI/DetailTextView.swift"; sourceTree = "<group>"; };
 		21D6033F22F17C6000779860 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = "../../../../../../../System/Volumes/Data/Users/yanyibo/Documents/GitHub/CardView-SwiftUI/CardView-SwiftUI/CardView-SwiftUI/ProfileView.swift"; sourceTree = "<group>"; };
 		21D6034122F184E900779860 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = "../../../../../../../System/Volumes/Data/Users/yanyibo/Documents/GitHub/CardView-SwiftUI/CardView-SwiftUI/CardView-SwiftUI/CardView.swift"; sourceTree = "<group>"; };
 		21D6034322F185FB00779860 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Source.swift; path = "../../../../../../../System/Volumes/Data/Users/yanyibo/Documents/GitHub/CardView-SwiftUI/CardView-SwiftUI/CardView-SwiftUI/Source.swift"; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				21D6034322F185FB00779860 /* Source.swift */,
 				2137093922F16D53005D6BDA /* ContentView.swift */,
 				21D6034122F184E900779860 /* CardView.swift */,
+				2179C2F922F1A5C8009A3931 /* DetailTextView.swift */,
 				21D6033F22F17C6000779860 /* ProfileView.swift */,
 				2137093B22F16D54005D6BDA /* Assets.xcassets */,
 				2137094022F16D54005D6BDA /* LaunchScreen.storyboard */,
@@ -159,6 +162,7 @@
 				2137093622F16D53005D6BDA /* AppDelegate.swift in Sources */,
 				21D6034422F185FB00779860 /* Source.swift in Sources */,
 				2137093822F16D53005D6BDA /* SceneDelegate.swift in Sources */,
+				2179C2FA22F1A5C8009A3931 /* DetailTextView.swift in Sources */,
 				2137093A22F16D53005D6BDA /* ContentView.swift in Sources */,
 				21D6034222F184E900779860 /* CardView.swift in Sources */,
 			);

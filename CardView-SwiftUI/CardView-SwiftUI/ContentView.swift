@@ -10,13 +10,34 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isProfileShow = false
+    @State var isShowDetail = false
+    
+    var cards = cardData
     
     var body: some View {
         VStack {
             TopMenu(isProfileShow: $isProfileShow)
             
-            ScrollView {
-                Text("Hello")
+            ScrollView() {
+                VStack(spacing: 25) {
+                    ForEach(cards) { card in
+                        
+                        CardView(
+                            subtitle: card.subtitle,
+                            title: card.title,
+                            backgroundImage: Image(card.backgroundImage),
+                            briefSummary: card.briefSummary,
+                            description: card.description,
+                            isShowDetail: self.$isShowDetail
+                        )
+                        .tapAction {
+                            self.isShowDetail.toggle()
+                        }
+                        .frame(width: self.isShowDetail ? UIScreen.main.bounds.width : nil)
+                        
+                    }
+                }
+                
             }
             .frame(minWidth: 0, maxWidth: .infinity)
         }
@@ -24,6 +45,7 @@ struct ContentView: View {
         .sheet(isPresented: $isProfileShow, content: {
             ProfileView(isProfileShow: self.$isProfileShow)
         })
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
