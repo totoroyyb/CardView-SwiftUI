@@ -15,41 +15,29 @@ struct CardView: View {
     var briefSummary: String
     var description: String
     
-    @Binding var isShowDetail: Bool
+    @State var isShowDetail = false
     
     var body: some View {
         VStack(spacing: 0) {
             TopBriefView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary, isShowDetail: $isShowDetail)
             
             ScrollView(.vertical, showsIndicators: true) {
-                Text(description)
+                Text(self.description)
                     .font(.body)
                     .foregroundColor(.white)
-                    .lineLimit(nil)
-                    .frame(idealHeight: isShowDetail ? .infinity : nil)
+                    .frame(idealHeight: .leastNonzeroMagnitude)
                     .padding()
                     .background(Color("bgColor1"))
             }
-            .animation(.default)
             .frame(height: isShowDetail ? UIScreen.main.bounds.height * 0.75 : 0)
-            
+            .animation(.default)
+        }.onTapGesture {
+            self.isShowDetail.toggle()
         }
+        .padding(isShowDetail ? .zero : 10)
+        .frame(width: isShowDetail ? UIScreen.main.bounds.width : nil)
+        .animation(.default)
         .edgesIgnoringSafeArea(.all)
-        
-        
-//        ScrollView(.vertical, showsIndicators: true) {
-//            ZStack(alignment: .top) {
-//                Text(description)
-//                    .foregroundColor(.black)
-//                    .lineLimit(nil)
-//                    .frame(idealHeight: isShowDetail ? .infinity : nil)
-//                    .offset(y: isShowDetail ? UIScreen.main.bounds.height / 2 : UIScreen.main.bounds.height)
-//
-//
-//                TopBriefView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary, isShowDetail: $isShowDetail)
-//            }
-//        }
-//        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -57,7 +45,7 @@ struct CardView: View {
 #if DEBUG
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(subtitle: "MEET THE DEVELOPER", title: "Insider VSCO's Imaging Lab", backgroundImage: Image("bg1"), briefSummary: "How VSCO brings analog authenticity to your digital shots", description: desPlaceholer, isShowDetail: .constant(true))
+        CardView(subtitle: "MEET THE DEVELOPER", title: "Insider VSCO's Imaging Lab", backgroundImage: Image("bg1"), briefSummary: "How VSCO brings analog authenticity to your digital shots", description: desPlaceholer, isShowDetail: false)
     }
 }
 #endif
@@ -72,6 +60,7 @@ struct TopBriefView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            
             HStack {
                 VStack(alignment: .leading) {
                     Text(subtitle)
@@ -85,7 +74,7 @@ struct TopBriefView: View {
                     Spacer()
                 }
                 .lineLimit(3)
-                    .frame(maxWidth: 180)
+                
                 Spacer()
             }
             
@@ -104,6 +93,7 @@ struct TopBriefView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
         )
-        .cornerRadius(20)
+        .cornerRadius(isShowDetail ? 0 : 20)
+        .animation(.default)
     }
 }
