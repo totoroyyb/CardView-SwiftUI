@@ -29,7 +29,7 @@ struct CardView: View {
                     .padding()
                     .background(Color("bgColor1"))
             }
-            .frame(height: isShowDetail ? UIScreen.main.bounds.height * 0.75 : 0)
+            .frame(height: isShowDetail ? nil : 0)
             .animation(.default)
         }.onTapGesture {
             self.isShowDetail.toggle()
@@ -37,7 +37,7 @@ struct CardView: View {
         .padding(isShowDetail ? .zero : 10)
         .frame(width: isShowDetail ? UIScreen.main.bounds.width : nil)
         .animation(.default)
-        .edgesIgnoringSafeArea(.all)
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
@@ -45,7 +45,11 @@ struct CardView: View {
 #if DEBUG
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(subtitle: "MEET THE DEVELOPER", title: "Insider VSCO's Imaging Lab", backgroundImage: Image("bg1"), briefSummary: "How VSCO brings analog authenticity to your digital shots", description: desPlaceholer, isShowDetail: false)
+        Group {
+            CardView(subtitle: "MEET THE DEVELOPER", title: "Insider VSCO's Imaging Lab", backgroundImage: Image("bg1"), briefSummary: "How VSCO brings analog authenticity to your digital shots", description: desPlaceholer, isShowDetail: false)
+            
+            CardView(subtitle: "MEET THE DEVELOPER", title: "Insider VSCO's Imaging Lab", backgroundImage: Image("bg1"), briefSummary: "How VSCO brings analog authenticity to your digital shots", description: desPlaceholer, isShowDetail: true)
+        }
     }
 }
 #endif

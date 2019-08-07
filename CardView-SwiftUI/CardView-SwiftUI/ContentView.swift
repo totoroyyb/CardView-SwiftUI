@@ -18,7 +18,7 @@ struct ContentView: View {
             TopMenu(isProfileShow: $isProfileShow).padding()
             
             ScrollView() {
-                VStack(spacing: 25) {
+                VStack(spacing: 20) {
                     ForEach(cards) { card in     
                         CardView(
                             subtitle: card.subtitle,
@@ -35,7 +35,7 @@ struct ContentView: View {
         .sheet(isPresented: $isProfileShow, content: {
             ProfileView(isProfileShow: self.$isProfileShow)
         })
-        .edgesIgnoringSafeArea(.bottom)
+//        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
