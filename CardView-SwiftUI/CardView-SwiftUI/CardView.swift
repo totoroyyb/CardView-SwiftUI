@@ -18,14 +18,17 @@ struct CardView: View {
     @State var isShowDetail = false
     
     var body: some View {
-        ZStack {
+        GeometryReader { geo in
             TopView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary)
-            
-            if (isShowDetail) {
-                ExpandedView(subtitle: subtitle, title: title, backgroundImage: backgroundImage, briefSummary: briefSummary, description: description)
-            }
+                .onTapGesture {
+                        self.isShowDetail.toggle()
+                }
+                .offset(y: self.isShowDetail ? -geo.frame(in: .global).minY : 0)
+                .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 0))
         }
-        .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 0))
+        .frame(height: self.isShowDetail ? UIScreen.main.bounds.height : 300)
+        .frame(width: self.isShowDetail ? UIScreen.main.bounds.width : 350)
+        //.animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 0))
     }
 }
 
@@ -51,21 +54,15 @@ struct TopView: View {
     var briefSummary: String
     
     var body: some View {
-        ZStack {
-            backgroundImage
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .clipped()
-            //Rectangle()
-            
+        GeometryReader { geo in
             VStack(alignment: .center) {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(subtitle)
+                        Text(self.subtitle)
                             .font(.caption)
                             .foregroundColor(.gray)
                         
-                        Text(title)
+                        Text(self.title)
                             .font(.headline)
                             .foregroundColor(.white)
                         
@@ -78,7 +75,7 @@ struct TopView: View {
                 .padding()
                 
                 HStack(alignment: .center) {
-                    Text(briefSummary)
+                    Text(self.briefSummary)
                         .foregroundColor(.white)
                         .font(.caption)
                         .lineLimit(3)
@@ -86,14 +83,15 @@ struct TopView: View {
                 }
                 .padding()
             }
+            .background(
+                self.backgroundImage
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .clipped()
+            )
+//            .animation(.interpolatingSpring(mass: 1, stiffness: 80, damping: 15, initialVelocity: 2))
         }
-        .animation(.interpolatingSpring(mass: 1, stiffness: 80, damping: 15, initialVelocity: 2))
-//        .background(
-//            backgroundImage
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//                .clipped()
-//        )
     }
 }
 

@@ -10,44 +10,29 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isProfileShow = false
-    @State var isShow = false
     
     var cards = cardData
     
     var body: some View {
-        ZStack {
-//            VStack {
-//                TopMenu(isProfileShow: $isProfileShow)
-//                    .padding()
-//                    .background(Color.white)
-//                Spacer()
-//            }
+        ScrollView {
+            TopMenu(isProfileShow: $isProfileShow)
+                .padding()
+                .padding(.bottom, -10)
             
-            ScrollView {
-                TopMenu(isProfileShow: $isProfileShow)
-                    .padding()
-                    .padding(.bottom, -10)
-                
-                VStack(alignment: .center, spacing: 10) {
-                    ForEach(self.cards) { card in
-                        GeometryReader { geo in
-                            CardView (
-                                subtitle: card.subtitle,
-                                title: card.title,
-                                backgroundImage: Image(card.backgroundImage),
-                                briefSummary: card.briefSummary,
-                                description: card.description
-                            )
-                            .onTapGesture {
-                                    self.isShow.toggle()
-                            }
-                            .offset(y: self.isShow ? -geo.frame(in: .global).minY : 0)
-                        }
-                        .frame(height: self.isShow ? UIScreen.main.bounds.height : 300)
-                        .frame(width: self.isShow ? UIScreen.main.bounds.width : 350)
-                    }
+            VStack(alignment: .center, spacing: 10) {
+                ForEach(self.cards) { card in
+                    CardView (
+                        subtitle: card.subtitle,
+                        title: card.title,
+                        backgroundImage: Image(card.backgroundImage),
+                        briefSummary: card.briefSummary,
+                        description: card.description
+                    )
+                    .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 0))
                 }
             }
+            .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 0))
+            
         }
         .sheet(isPresented: $isProfileShow, content: {
             ProfileView(isProfileShow: self.$isProfileShow)
