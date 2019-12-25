@@ -36,8 +36,7 @@ struct ContentView: View {
                                 title: card.title,
                                 backgroundImage: Image(card.backgroundImage),
                                 briefSummary: card.briefSummary,
-                                description: card.description,
-                                geo: $geo
+                                description: card.description
                             )
                             .onTapGesture {
                                     self.isShow.toggle()

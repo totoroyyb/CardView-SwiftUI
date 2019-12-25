@@ -16,7 +16,6 @@ struct CardView: View {
     var description: String
     
     @State var isShowDetail = false
-    @Binding var geo: GeometryProxy
     
     var body: some View {
         ZStack {
