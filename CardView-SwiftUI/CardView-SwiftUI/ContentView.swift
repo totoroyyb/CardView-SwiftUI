@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isProfileShow = false
+    @State var counter: CGFloat = 0;
     
     var cards = cardData
     
@@ -19,8 +20,7 @@ struct ContentView: View {
                 .padding()
                 .padding(.bottom, -10)
             
-            VStack(alignment: .center, spacing: 10) {
-                ForEach(self.cards) { card in
+            ForEach(self.cards) { card in
                     CardView (
                         subtitle: card.subtitle,
                         title: card.title,
@@ -28,11 +28,8 @@ struct ContentView: View {
                         briefSummary: card.briefSummary,
                         description: card.description
                     )
-                    .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 0))
-                }
             }
             .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 0))
-            
         }
         .sheet(isPresented: $isProfileShow, content: {
             ProfileView(isProfileShow: self.$isProfileShow)
