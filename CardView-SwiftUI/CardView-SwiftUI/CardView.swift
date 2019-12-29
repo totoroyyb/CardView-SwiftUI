@@ -93,29 +93,6 @@ struct CardInnerView: View {
     }
 }
 
-struct ExpandedView: View {
-    var subtitle: String
-    var title: String
-    var backgroundImage: Image
-    var briefSummary: String
-    var description: String
-    
-    var body: some View {
-        ZStack {
-            ScrollView(.vertical, showsIndicators: true) {
-                Text(self.description)
-                    .font(.body)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(Color("bgColor1"))
-            }
-            .animation(.default)
-            
-//            CardInnerView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary)
-        }
-    }
-}
-
 struct TopView: View {
     var subtitle: String
     var title: String
