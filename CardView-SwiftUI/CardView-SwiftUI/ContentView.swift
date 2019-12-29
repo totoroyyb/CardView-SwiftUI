@@ -12,6 +12,8 @@ struct ContentView: View {
     @State var isProfileShow = false
     @State var counter: CGFloat = 0;
     
+    @ObservedObject var control = CardView_Control()
+    
     var cards = cardData
     
     var body: some View {
@@ -28,6 +30,7 @@ struct ContentView: View {
                     briefSummary: card.briefSummary,
                     description: card.description
                 )
+                .environmentObject(self.control)
             }
         }
         .sheet(isPresented: $isProfileShow, content: {
