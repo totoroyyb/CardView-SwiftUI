@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct CardView: View {
     var subtitle: String
@@ -19,19 +20,20 @@ struct CardView: View {
     
     var body: some View {
         GeometryReader { geo in
-            ZStack {
-                TopView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary)
-            }
-            .onTapGesture {
-                    self.isShowDetail.toggle()
-            }
-            .cornerRadius(20)
-            .offset(x: self.isShowDetail ? -geo.frame(in: .global).minX : 0, y: self.isShowDetail ? -geo.frame(in: .global).minY : 0)
-            .frame(height: self.isShowDetail ? UIScreen.main.bounds.height : nil)
-            .frame(width: self.isShowDetail ? UIScreen.main.bounds.width : nil)
+            CardInnerView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary, description: self.description, isShow: self.$isShowDetail)
+                .onTapGesture {
+                    withAnimation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 1)) {
+                        self.isShowDetail.toggle()
+                    }
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                .offset(x: self.isShowDetail ? -geo.frame(in: .global).minX : 0, y: self.isShowDetail ? -geo.frame(in: .global).minY : 0)
+                .frame(height: self.isShowDetail ? UIScreen.main.bounds.height : nil)
+                .frame(width: self.isShowDetail ? UIScreen.main.bounds.width : nil)
         }
         .frame(width: UIScreen.main.bounds.width - 20)
         .frame(height: 300)
+        .layoutPriority(isShowDetail ? 1 : 0)
     }
 }
 
@@ -44,55 +46,44 @@ struct CardView_Previews: PreviewProvider {
             
             CardView(subtitle: "MEET THE DEVELOPER", title: "Insider VSCO's Imaging Lab", backgroundImage: Image("bg1"), briefSummary: "How VSCO brings analog authenticity to your digital shots", description: desPlaceholer, isShowDetail: true)
             
-            ExpandedView(subtitle: "MEET THE DEVELOPER", title: "Insider VSCO's Imaging Lab", backgroundImage: Image("bg1"), briefSummary: "How VSCO brings analog authenticity to your digital shots", description: desPlaceholer)
+            TopView(subtitle: "MEET THE DEVELOPER", title: "Insider VSCO's Imaging Lab", backgroundImage: Image("bg1"), briefSummary: "How VSCO brings analog authenticity to your digital shots")
         }
     }
 }
 #endif
 
-struct TopView: View {
+struct CardInnerView: View {
     var subtitle: String
     var title: String
     var backgroundImage: Image
     var briefSummary: String
+    var description: String
+    
+    @Binding var isShow: Bool
     
     var body: some View {
         GeometryReader { geo in
-            VStack(alignment: .center) {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(self.subtitle)
-                            .font(.caption)
-                            .foregroundColor(.gray)
-                        
-                        Text(self.title)
-                            .font(.headline)
-                            .foregroundColor(.white)
-                        
-                        Spacer()
-                    }
-                    .lineLimit(3)
-                    
-                    Spacer()
-                }
-                .padding()
+            ScrollView {
+                TopView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary)
+                    .frame(height: self.isShow ? 400 : 300)
+                    .background(
+                        self.backgroundImage
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(maxWidth: geo.size.width, maxHeight: geo.size.height)
+                            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                )
                 
-                HStack(alignment: .center) {
-                    Text(self.briefSummary)
+                //if self.isShow {
+                    Text(self.description)
+                        .font(.body)
                         .foregroundColor(.white)
-                        .font(.caption)
-                        .lineLimit(3)
-                    Spacer()
-                }
-                .padding()
+                        .padding()
+                        .opacity(self.isShow ? 1 : 0)
+                        .animation(.linear)
+                //}
             }
-            .background(
-                self.backgroundImage
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(maxWidth: geo.size.width, maxHeight: geo.size.height)
-                    .clipped()
-            )
+            .background(Color.black)
         }
     }
 }
@@ -115,7 +106,47 @@ struct ExpandedView: View {
             }
             .animation(.default)
             
-            TopView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary)
+//            CardInnerView(subtitle: self.subtitle, title: self.title, backgroundImage: self.backgroundImage, briefSummary: self.briefSummary)
+        }
+    }
+}
+
+struct TopView: View {
+    var subtitle: String
+    var title: String
+    var backgroundImage: Image
+    var briefSummary: String
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(self.subtitle)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                    
+                    Text(self.title)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    
+                    Spacer()
+                }
+                .lineLimit(3)
+                
+                Spacer()
+            }
+            .padding()
+            
+            Spacer()
+            
+            HStack(alignment: .center) {
+                Text(self.briefSummary)
+                    .foregroundColor(.white)
+                    .font(.caption)
+                    .lineLimit(3)
+                Spacer()
+            }
+            .padding()
         }
     }
 }

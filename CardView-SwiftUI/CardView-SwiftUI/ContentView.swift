@@ -21,15 +21,14 @@ struct ContentView: View {
                 .padding(.bottom, -10)
             
             ForEach(self.cards) { card in
-                    CardView (
-                        subtitle: card.subtitle,
-                        title: card.title,
-                        backgroundImage: Image(card.backgroundImage),
-                        briefSummary: card.briefSummary,
-                        description: card.description
-                    )
+                CardView (
+                    subtitle: card.subtitle,
+                    title: card.title,
+                    backgroundImage: Image(card.backgroundImage),
+                    briefSummary: card.briefSummary,
+                    description: card.description
+                )
             }
-            .animation(.interpolatingSpring(mass: 1, stiffness: 90, damping: 15, initialVelocity: 0))
         }
         .sheet(isPresented: $isProfileShow, content: {
             ProfileView(isProfileShow: self.$isProfileShow)
