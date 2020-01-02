@@ -33,6 +33,7 @@ struct ContentView: View {
                 .environmentObject(self.control)
             }
         }
+        .background(Color("bgColor1"))
         .sheet(isPresented: $isProfileShow, content: {
             ProfileView(isProfileShow: self.$isProfileShow)
         })
