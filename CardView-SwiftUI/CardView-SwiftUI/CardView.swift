@@ -123,14 +123,13 @@ struct TopView: View {
                         Text(self.subtitle)
                             .font(.caption)
                             .foregroundColor(.gray)
+                            .lineLimit(1)
                         
                         Text(self.title)
                             .font(.headline)
                             .foregroundColor(.white)
-                        
-                        Spacer()
+                            .lineLimit(2)
                     }
-                    .lineLimit(3)
                     
                     Spacer()
                 }
