@@ -28,10 +28,10 @@
 		2137093E22F16D54005D6BDA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2137094122F16D54005D6BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2137094322F16D54005D6BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2179C2F922F1A5C8009A3931 /* DetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailTextView.swift; path = "../../../../../../../System/Volumes/Data/Users/yanyibo/Documents/GitHub/CardView-SwiftUI/CardView-SwiftUI/CardView-SwiftUI/DetailTextView.swift"; sourceTree = "<group>"; };
-		21D6033F22F17C6000779860 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileView.swift; path = "../../../../../../../System/Volumes/Data/Users/yanyibo/Documents/GitHub/CardView-SwiftUI/CardView-SwiftUI/CardView-SwiftUI/ProfileView.swift"; sourceTree = "<group>"; };
-		21D6034122F184E900779860 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = "../../../../../../../System/Volumes/Data/Users/yanyibo/Documents/GitHub/CardView-SwiftUI/CardView-SwiftUI/CardView-SwiftUI/CardView.swift"; sourceTree = "<group>"; };
-		21D6034322F185FB00779860 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Source.swift; path = "../../../../../../../System/Volumes/Data/Users/yanyibo/Documents/GitHub/CardView-SwiftUI/CardView-SwiftUI/CardView-SwiftUI/Source.swift"; sourceTree = "<group>"; };
+		2179C2F922F1A5C8009A3931 /* DetailTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTextView.swift; sourceTree = "<group>"; };
+		21D6033F22F17C6000779860 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		21D6034122F184E900779860 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		21D6034322F185FB00779860 /* Source.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
